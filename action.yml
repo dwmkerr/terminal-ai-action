@@ -31,19 +31,13 @@ runs:
       shell: bash
       run: npm install -g @dwmkerr/terminal-ai
 
-    - name: create ~/.ai/config.yaml
+    - name: Create Config File & Set API Key
       shell: bash
       run: |
         mkdir ~/.ai
         echo "openAiApiKey: ${{ inputs.openAiApiKey }}" >> ~/.ai/config.yaml
-        cat ~/.ai/config.yaml
 
-    - name: Debug Config
-      shell: bash
-      run: cat ~/.ai/config.yaml
-
-    - name: Execute Command
+    - name: Test Command
       shell: bash
       run: |
         ${{ inputs.command }}
-        echo "Result: $?"
