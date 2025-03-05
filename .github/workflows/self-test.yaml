@@ -13,5 +13,5 @@ jobs:
       - name: Review with Terminal AI
         uses: ./
         with:
-          openAiKey: ${{ secrets.OPENAI_API_KEY }}
+          openAiKey: TEST
           command: ai "review this PR"
