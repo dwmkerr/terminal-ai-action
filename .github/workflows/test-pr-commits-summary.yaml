@@ -27,14 +27,22 @@ jobs:
         with:
           openAiApiKey: ${{ secrets.OPENAI_API_KEY }}
           command: |
+            # Summarise the PR.
+            echo "**AI PR Summary**" > comment.md
+            ai-pr-diff "${{ github.event.pull_request.base.ref }}" "${GITHUB_SHA}" > summary
+            ai 'I have provided you a git log and git diff entry for each commit in a Pull Request. Given these entries can you summarise what changes you think this pull request will merge into my branch. Summarise using Convential Commit format, with <type>: short summary\n\nDetailed info, where type is feat/fix/etc based on Conventional Commit standards' < summary | tee -a comment.md
+            gh pr comment $PRNUM --body-file comment.md
+
             # Create a summary of all of the commits and diffs in the PR.
-            ai-pr-commit-diffs "${{ github.event.pull_request.base.ref }}" "${GITHUB_SHA}" > summary
+            ai-pr-all-logs-and-diffs "${{ github.event.pull_request.base.ref }}" "${GITHUB_SHA}" > summary
 
             # Ask AI to summarise into a message.
+            echo "**AI PR Summary - All Commits**" > comment.md
             ai 'I have provided you a git log and git diff entry for each commit in a Pull Request. Given these entries can you summarise what changes you think this pull request will merge into my branch. Summarise using Convential Commit format, with <type>: short summary\n\nDetailed info, where type is feat/fix/etc based on Conventional Commit standards' < summary | tee comment.md
 
             # Comment on the pull request.
             gh pr comment $PRNUM --body-file comment.md
+
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_REPO: ${{ github.repository }}

@@ -49,5 +49,4 @@ runs:
     - name: Test Command
       shell: bash
       run: |
-        ls /usr/local/bin
         ${{ inputs.command }}
