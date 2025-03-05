@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.3.1](https://github.com/dwmkerr/terminal-ai-action/compare/v0.2.0...v0.3.1) (2025-03-05)
+
+
+### Features
+
+* set api key basic command ([#4](https://github.com/dwmkerr/terminal-ai-action/issues/4)) ([e8c3649](https://github.com/dwmkerr/terminal-ai-action/commit/e8c36491f1b0d6bed3ff87d0e5d088e205206796))
+
+
+### Miscellaneous Chores
+
+* release 0.1.11 ([0516cd0](https://github.com/dwmkerr/terminal-ai-action/commit/0516cd00cb664f7fba7b74128d3d30a0d74cda58))
+* release 0.3.1 ([4332c8c](https://github.com/dwmkerr/terminal-ai-action/commit/4332c8c1cfa5de3b01adc5f8abefa08c97e1c0d9))
+
 ## [0.2.0](https://github.com/dwmkerr/terminal-ai-action/compare/v0.1.11...v0.2.0) (2025-03-05)
 
 
