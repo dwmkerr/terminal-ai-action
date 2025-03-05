@@ -34,10 +34,10 @@ runs:
       shell: bash
       run: |
         for script in $(pwd)/scripts/*.sh; do
-          name=${script/.sh}
+          name=$(basename "${script/.sh}")
           echo "linking '${name}'..."
-          chmod +x $(pwd)/scripts/${script}
-          ln -s $(pwd)/scripts/${script} /usr/local/bin/${name}
+          chmod +x "${script}"
+          ln -s "${script}" "/usr/local/bin/${name}"
         done
 
     - name: Create Config File & Set API Key
