@@ -39,6 +39,7 @@ runs:
       shell: bash
       run: |
         mkdir ~/.ai
+        ln /usr/local/bin/
         echo "openAiApiKey: ${{ inputs.openAiApiKey }}" >> ~/.ai/config.yaml
 
     - name: Test Command
