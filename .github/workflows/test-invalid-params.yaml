@@ -1,0 +1,17 @@
+name: Test - Invalid Params
+
+on:
+  push:
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Review with Terminal AI
+        uses: ./
+        with:
+          WRONGopenAiKey: ${{ secrets.OPENAI_API_KEY }}
+          WRONGcommand: ai "review this PR"
