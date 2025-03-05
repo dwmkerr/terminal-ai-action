@@ -1,4 +1,4 @@
-name: 'terminal-ai'
+name: 'ai'
 description: 'use AI to operate on your code'
 author: dwmkerr
 branding:
@@ -25,14 +25,14 @@ runs:
       shell: bash
       run: npm install -g @dwmkerr/terminal-ai
 
-    - name: Create ~/.ai/config.yaml
-      shell: bash
-      run: echo 'openAiKey: "${{ inputs.openAiKey }}" >> ~/.ai/config.yaml'
+    # - name: Create ~/.ai/config.yaml
+    #   shell: bash
+    #   run: echo 'openAiKey: "${{ inputs.openAiKey }}" >> ~/.ai/config.yaml'
 
-    - name: Debug Config
-      shell: bash
-      run: cat ~/.ai/config.yaml
+    # - name: Debug Config
+    #   shell: bash
+    #   run: cat ~/.ai/config.yaml
 
-    - name: Execute Command
-      shell: bash
-      run: ${{ inputs.command }}
+    # - name: Execute Command
+    #   shell: bash
+    #   run: ${{ inputs.command }}
