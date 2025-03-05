@@ -30,6 +30,11 @@ runs:
       shell: bash
       run: npm install -g @dwmkerr/terminal-ai
 
+    - name: Install Scripts
+      shell: bash
+      run: |
+        ln -s $(pwd)/scripts/interate-pr-commits.sh pr-commits
+
     - name: Create Config File & Set API Key
       shell: bash
       run: |
