@@ -16,4 +16,4 @@ jobs:
         run: |
           echo "Testing base: ${{ github.event.pull_request.base.ref }}"
           # Show all of the commit logs and diffs.
-          ./scripts/iterate-pr-commits.sh "${{ github.event.pull_request.base.ref }}"
+          ./scripts/iterate-pr-commits.sh "${{ github.event.pull_request.base.ref }}" "${GITHUB_SHA}"

@@ -11,14 +11,14 @@ echo "Params: $*"
 #   ${{ github.event.pull_request.base.ref }}
 # If we are not provided with a base, assume main.
 base_ref="${1:main}"
-current_ref=${2?error: a current ref must be specified, e.g $$GITHUB_SHA}
+current_ref=${2?error: a current ref must be specified, e.g \$GITHUB_SHA}
 echo "Comparing base: ${base_ref} to ${current_ref}"
 
 # Fetch the base so that we know its commits.
-git fetch --quiet origin ${base_ref}
+git fetch --quiet origin "${base_ref}"
 
 # Get the list of commits between main and the current branch
-commits=$(git log main..${current_ref} --pretty=format:"%H")
+commits=$(git log "main..${current_ref}" --pretty=format:"%H")
 
 # Loop through each commit
 while IFS= read -r commit; do
