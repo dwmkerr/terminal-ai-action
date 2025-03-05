@@ -10,8 +10,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Review with Terminal AI
+      - name: Expect Fail - Invalid Parameters
         uses: ./
         with:
           WRONGopenAiKey: ${{ secrets.OPENAI_API_KEY }}
           WRONGcommand: ai "review this PR"
+        continue-on-error: true
