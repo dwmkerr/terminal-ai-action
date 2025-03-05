@@ -14,11 +14,11 @@ base_ref="${1:main}"
 current_ref=${2?error: a current ref must be specified, e.g \$GITHUB_SHA}
 echo "Comparing base: ${base_ref} to ${current_ref}"
 
-# Fetch the base so that we know its commits.
-git fetch --quiet origin "${base_ref}"
+# We're detached, get the base and current branches.
+git fetch --quiet origin "${base_ref}" "${current_ref}"
 
 # Get the list of commits between main and the current branch
-commits=$(git log "main..${current_ref}" --pretty=format:"%H")
+commits=$(git log "${base_ref}..${current_ref}" --pretty=format:"%H")
 
 # Loop through each commit
 while IFS= read -r commit; do
