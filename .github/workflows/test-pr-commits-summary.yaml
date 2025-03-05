@@ -13,7 +13,8 @@ jobs:
       - name: Iterate through Commits
         run: |
           # Get the base ref, e.g. the target of the commit.
-          BASE_REF="${{ github.event.pull_request.base.ref }}"
+          BASE_REF=${{ github.event.pull_request.base.ref }}
+          echo "Base Ref: ${BASE_REF}"
           git fetch origin $BASE_REF
           
           # Go through each commit in the PR.
