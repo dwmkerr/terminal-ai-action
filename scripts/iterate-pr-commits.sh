@@ -19,7 +19,7 @@ git fetch origin "${base_ref}" "${current_ref}"
 git fetch --all
 
 # Get the list of commits between main and the current branch
-commits=$(git log "origin/${base_ref}..origin/${current_ref}" --pretty=format:"%H")
+commits=$(git log "origin/${base_ref}..${current_ref}" --pretty=format:"%H")
 
 # Loop through each commit
 while IFS= read -r commit; do
