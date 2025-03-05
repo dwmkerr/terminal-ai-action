@@ -35,6 +35,7 @@ runs:
       shell: bash
       run: |
         echo "openAiKey: ${{ inputs.openAiKey }}" >> ~/.ai/config.yaml
+        cat ~/.ai/config.yaml
 
     - name: Debug Config
       shell: bash
