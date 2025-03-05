@@ -1,7 +1,9 @@
 name: Test PR - Commits Summary
 
 on:
-  push:
+  # This can *only* work on a pull request, as we need to know the
+  # pull request base (i.e. target branch) to compare to.
+  pull_request:
 
 jobs:
   review:
