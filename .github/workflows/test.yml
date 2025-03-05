@@ -18,7 +18,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: ai
-        uses: ../..
+        uses: dwmkerr/terminal-ai-action@latest
         with:
           openAiKey: "Key one"
           command: 'ai -- "hello"'
