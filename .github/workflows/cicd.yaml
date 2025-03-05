@@ -35,4 +35,4 @@ jobs:
         id: release
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          package-name: terminal-ai
+          release-type: simple
