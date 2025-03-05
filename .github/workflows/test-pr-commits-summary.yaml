@@ -24,7 +24,7 @@ jobs:
             echo "Testing base: ${{ github.event.pull_request.base.ref }}"
             # Show all of the commit logs and diffs.
             # ./scripts/iterate-pr-commits.sh "${{ github.event.pull_request.base.ref }}" "${GITHUB_SHA}" > summary
-            pr-commits.sh "${{ github.event.pull_request.base.ref }}" "${GITHUB_SHA}" > summary
+            pr-commits "${{ github.event.pull_request.base.ref }}" "${GITHUB_SHA}" > summary
 
             # Summarise.
             ai 'I have provided you a git log and git diff entry for each commit in a Pull Request. Given these entries can you summarise what changes you think this pull request will merge into my branch. Summarise using Convential Commit format, with <type>: short summary\n\nDetailed info, where type is feat/fix/etc based on Conventional Commit standards' < summary
