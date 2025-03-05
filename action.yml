@@ -1,5 +1,5 @@
-name: 'terminal-ai'
-description: 'use AI to operate on your code'
+name: 'Terminal AI'
+description: 'Use Terminal AI in your workflows'
 author: dwmkerr
 branding:
   icon: activity
