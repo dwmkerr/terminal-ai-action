@@ -19,7 +19,6 @@ runs:
       shell: bash
       run: |
         [[ ! -z '${{ inputs.openAiApiKey }}' ]] || { echo "'openAiApiKey' parameter is required" ; exit 1; }
-        [[ ! -z '${{ inputs.command }}' ]] || { echo "'command' parameter is required" ; exit 1; }
 
     - name: Setup Node
       uses: actions/setup-node@v4
@@ -30,6 +29,16 @@ runs:
     - name: Install Terminal AI
       shell: bash
       run: npm install -g @dwmkerr/terminal-ai
+
+    - name: Install Scripts
+      shell: bash
+      run: |
+        for script in $(pwd)/scripts/*.sh; do
+          name=$(basename "${script/.sh}")
+          echo "linking '${name}'..."
+          chmod +x "${script}"
+          ln -s "${script}" "/usr/local/bin/${name}"
+        done
 
     - name: Create Config File & Set API Key
       shell: bash

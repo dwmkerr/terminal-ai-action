@@ -1,25 +1,49 @@
 name: Test PR - Commits Summary
 
 on:
-  push:
+  # This can *only* work on a pull request, as we need to know the
+  # pull request base (i.e. target branch) to compare to.
+  pull_request:
 
 jobs:
   review:
     runs-on: ubuntu-latest
+    
+    # Essential! Don't forget to set permissions on the pull requests if you
+    # want to be able to comment on it.
+    permissions:
+      pull-requests: write
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          # Essential you fetch all of the history so we can compare each commit
+          # to the base.
+          fetch-depth: 0
 
       - name: Iterate through Commits
-        run: |
-          # Get the base ref, e.g. the target of the commit.
-          BASE_REF=${{ github.event.pull_request.base.ref }}
-          echo "Base Ref: ${BASE_REF}"
-          git fetch origin $BASE_REF
-          
-          # Go through each commit in the PR.
-          for commit in $(git log --format=format:%H origin/$BASE_REF..HEAD); do
-            echo "Commit: $commit"
-            git log -1 --format=format:%s $commit
-            git diff $commit^ $commit
-          done
+        uses: ./
+        with:
+          openAiApiKey: ${{ secrets.OPENAI_API_KEY }}
+          command: |
+            # Summarise the PR.
+            echo "**AI PR Summary**" > comment.md
+            ai-pr-diff "${{ github.event.pull_request.base.ref }}" "${GITHUB_SHA}" > summary
+            ai 'I have provided you a git log and git diff entry for each commit in a Pull Request. Given these entries can you summarise what changes you think this pull request will merge into my branch. Summarise using Convential Commit format, with <type>: short summary\n\nDetailed info, where type is feat/fix/etc based on Conventional Commit standards' < summary | tee -a comment.md
+            gh pr comment $PRNUM --body-file comment.md
+
+            # Create a summary of all of the commits and diffs in the PR.
+            ai-pr-all-logs-and-diffs "${{ github.event.pull_request.base.ref }}" "${GITHUB_SHA}" > summary
+
+            # Ask AI to summarise into a message.
+            echo "**AI PR Summary - All Commits**" > comment.md
+            ai 'I have provided you a git log and git diff entry for each commit in a Pull Request. Given these entries can you summarise what changes you think this pull request will merge into my branch. Summarise using Convential Commit format, with <type>: short summary\n\nDetailed info, where type is feat/fix/etc based on Conventional Commit standards' < summary | tee comment.md
+
+            # Comment on the pull request.
+            gh pr comment $PRNUM --body-file comment.md
+
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          PRNUM: ${{ github.event.pull_request.number }}
