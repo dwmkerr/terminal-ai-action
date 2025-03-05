@@ -27,3 +27,9 @@ The following configuration is supported:
 |---------------|-------------------------------|
 | `openAiKey`   | **Required.** OpenAI API Key. |
 | `command`     | **Required.** An AI command. See [Examples](https://github.com/dwmkerr/terminal-ai?tab=readme-ov-file#examples)
+
+## TODO
+
+Quick and dirty task list:
+
+- [ ] docs: nice example of [great README page](https://github.com/JamesIves/github-pages-deploy-action)
