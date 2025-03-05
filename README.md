@@ -1,28 +1,29 @@
 # terminal-ai-action
+
 GitHub action to run AI commands as part of pipelines.
 
-
-
-## Inputs
-- `openAiKey`: Your OpenAI API key (required).
-- `multilineYAML`: The YAML string to process with AI (required).
-
 ## Example Usage
+
+Create a workflow, e.g. `.github/workflows/review.yaml`
+
 ```yaml
-name: Run AI Action
+name: Review PR
 on:
-  push:
-    branches:
-      - main
+  pull_request:
 
 jobs:
-  ai:
-    runs-on: ubuntu-latest
+  review:
     steps:
-      - name: Run AI
-        uses: yourusername/github-action-python-ai@v1
+      - name: Review with Terminal AI
+        uses: dwmkerr/terminal-ai@latest
         with:
           openAiKey: ${{ secrets.OPENAI_API_KEY }}
-          multilineYAML: |
-            
-            another_key: another_value
+          command: ai "review this PR"
+```
+
+The following configuration is supported:
+
+| Configuration | Description                   |
+|---------------|-------------------------------|
+| `openAiKey`   | **Required.** OpenAI API Key. |
+| `command`     | **Required.** An AI command. See [Examples](https://github.com/dwmkerr/terminal-ai?tab=readme-ov-file#examples)

@@ -1,0 +1,14 @@
+name: Self Test
+
+on:
+  push:
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Review with Terminal AI
+        uses: ./
+        with:
+          openAiKey: ${{ secrets.OPENAI_API_KEY }}
+          command: ai "review this PR"
