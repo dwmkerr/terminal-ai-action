@@ -4,10 +4,13 @@
 set -e
 set -o pipefail
 
+# Debug params.
+echo "Params: $*"
+
 # Note that in a GitHub action you can get the base ref with:
 #   ${{ github.event.pull_request.base.ref }}
 # If we are not provided with a base, assume main.
-base_ref="${2:main}"
+base_ref="${1:main}"
 echo "Comparing to: ${base_ref}"
 
 # Fetch the base so that we know its commits.
