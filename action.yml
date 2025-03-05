@@ -44,4 +44,6 @@ runs:
 
     - name: Execute Command
       shell: bash
-      run: ${{ inputs.command }} && echo "Result: $?"
+      run: |
+        ${{ inputs.command }}
+        echo "Result: $?"
