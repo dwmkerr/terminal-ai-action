@@ -19,6 +19,7 @@ jobs:
       - name: Iterate through Commits
         uses: ./
         with:
+          openAiApiKey: ${{ secrets.OPENAI_API_KEY }}
           command: |
             echo "Testing base: ${{ github.event.pull_request.base.ref }}"
             # Show all of the commit logs and diffs.
