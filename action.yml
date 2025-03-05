@@ -15,6 +15,12 @@ inputs:
 runs:
   using: composite
   steps:
+    - name: Verify Parameters
+      shell: bash
+      run: |
+        [[ "${{ inputs.openAiKey }}" ]] || { echo "'openAiKey' parameter is required" ; exit 1; }
+        [[ "${{ inputs.command }}" ]] || { echo "'command' parameter is required" ; exit 1; }
+
     - name: Setup Node
       uses: actions/setup-node@v4
       with:
@@ -28,7 +34,7 @@ runs:
     - name: create ~/.ai/config.yaml
       shell: bash
       run: |
-        echo "openAiKey: ${{ inputs.openaikey }}" >> ~/.ai/config.yaml
+        echo "openAiKey: ${{ inputs.openAiKey }}" >> ~/.ai/config.yaml
 
     - name: Debug Config
       shell: bash
