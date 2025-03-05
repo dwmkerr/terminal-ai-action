@@ -18,8 +18,8 @@ runs:
     - name: Verify Parameters
       shell: bash
       run: |
-        [[ ! -z "${{ inputs.openAiKey }}" ]] || { echo "'openAiKey' parameter is required" ; exit 1; }
-        [[ ! -z "${{ inputs.command }}" ]] || { echo "'command' parameter is required" ; exit 1; }
+        [[ ! -z '${{ inputs.openAiKey }}' ]] || { echo "'openAiKey' parameter is required" ; exit 1; }
+        [[ ! -z '${{ inputs.command }}' ]] || { echo "'command' parameter is required" ; exit 1; }
 
     - name: Setup Node
       uses: actions/setup-node@v4
