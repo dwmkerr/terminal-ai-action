@@ -26,4 +26,4 @@ jobs:
             ./scripts/iterate-pr-commits.sh "${{ github.event.pull_request.base.ref }}" "${GITHUB_SHA}" > summary
 
             # Summarise.
-            ai 'summarise these changes, each section is a "git log" entry and its associated "git diff" short summary in convetional commit format (e.g. feat: whatever or fix: whatever) and a more detailed summary below'
+            ai 'I have provided you a git log and git diff entry for each commit in a Pull Request. Given these entries can you summarise what changes you think this pull request will merge into my branch. Summarise using Convential Commit format, with <type>: short summary\n\nDetailed info, where type is feat/fix/etc based on Conventional Commit standards'
