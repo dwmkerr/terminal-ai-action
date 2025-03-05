@@ -11,5 +11,9 @@ base_ref="${1:main}"
 current_ref=${2?error: a current ref must be specified, e.g \$GITHUB_SHA}
 echo "Comparing base: ${base_ref} to ${current_ref}"
 
+# We're detached, get the base and current branches.
+git fetch origin "${base_ref}" "${current_ref}"
+git fetch --all
+
 # Diff the base branch to the head of our PR.
-git diff "${base_ref}" "${current_ref}"
+git diff "origin/${base_ref}" "${current_ref}"
