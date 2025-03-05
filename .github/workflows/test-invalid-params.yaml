@@ -13,6 +13,13 @@ jobs:
       - name: Expect Fail - Invalid Parameters
         uses: ./
         with:
-          WRONGopenAiKey: ${{ secrets.OPENAI_API_KEY }}
+          WRONGopenAiKey: apikey
           WRONGcommand: ai "review this PR"
+        continue-on-error: true
+
+      - name: Expect Fail - Invalid API Key
+        uses: ./
+        with:
+          openAiKey: This is not vaild
+          command: ai "review this PR"
         continue-on-error: true
