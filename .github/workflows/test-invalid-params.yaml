@@ -13,13 +13,13 @@ jobs:
       - name: Expect Fail - Invalid Parameters
         uses: ./
         with:
-          WRONGopenAiKey: apikey
+          WRONGopenAiApiKey: apikey
           WRONGcommand: ai "review this PR"
         continue-on-error: true
 
       - name: Expect Fail - Invalid API Key
         uses: ./
         with:
-          openAiKey: This is not vaild
+          openAiApiKey: This is not vaild
           command: ai "review this PR"
         continue-on-error: true

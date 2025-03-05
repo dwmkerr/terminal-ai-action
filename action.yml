@@ -5,7 +5,7 @@ branding:
   icon: activity
   color: blue
 inputs:
-  openAiKey:
+  openAiApiKey:
     description: 'OpenAI API Key'
     required: true
   command:
@@ -18,7 +18,7 @@ runs:
     - name: Verify Parameters
       shell: bash
       run: |
-        [[ ! -z '${{ inputs.openAiKey }}' ]] || { echo "'openAiKey' parameter is required" ; exit 1; }
+        [[ ! -z '${{ inputs.openAiApiKey }}' ]] || { echo "'openAiApiKey' parameter is required" ; exit 1; }
         [[ ! -z '${{ inputs.command }}' ]] || { echo "'command' parameter is required" ; exit 1; }
 
     - name: Setup Node
@@ -35,7 +35,7 @@ runs:
       shell: bash
       run: |
         mkdir ~/.ai
-        echo "openAiKey: ${{ inputs.openAiKey }}" >> ~/.ai/config.yaml
+        echo "openAiApiKey: ${{ inputs.openAiApiKey }}" >> ~/.ai/config.yaml
         cat ~/.ai/config.yaml
 
     - name: Debug Config

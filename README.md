@@ -26,7 +26,7 @@ jobs:
       - name: Review with Terminal AI
         uses: dwmkerr/terminal-ai-action@latest
         with:
-          openAiKey: ${{ secrets.OPENAI_API_KEY }}
+          openAiApiKey: ${{ secrets.OPENAI_API_KEY }}
           command: ai "review this PR"
 ```
 
@@ -34,7 +34,7 @@ The following configuration is supported:
 
 | Configuration | Description                   |
 |---------------|-------------------------------|
-| `openAiKey`   | **Required.** OpenAI API Key. |
+| `openAiApiKey`   | **Required.** OpenAI API Key. |
 | `command`     | **Required.** An AI command. See [Examples](https://github.com/dwmkerr/terminal-ai?tab=readme-ov-file#examples)
 
 ## Documentation
@@ -54,7 +54,7 @@ jobs:
       - name: Review with Terminal AI
         uses: dwmkerr/terminal-ai-action@latest
         with:
-          openAiKey: ${{ secrets.OPENAI_API_KEY }}
+          openAiApiKey: ${{ secrets.OPENAI_API_KEY }}
           command: ai "review this PR"
 ```
 
