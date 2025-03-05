@@ -34,6 +34,7 @@ runs:
     - name: create ~/.ai/config.yaml
       shell: bash
       run: |
+        mkdir ~/.ai
         echo "openAiKey: ${{ inputs.openAiKey }}" >> ~/.ai/config.yaml
         cat ~/.ai/config.yaml
 
