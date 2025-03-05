@@ -16,6 +16,7 @@ echo "Comparing base: ${base_ref} to ${current_ref}"
 
 # We're detached, get the base and current branches.
 git fetch --quiet origin "${base_ref}" "${current_ref}"
+git fetch --quiet --all
 
 # Get the list of commits between main and the current branch
 commits=$(git log "${base_ref}..${current_ref}" --pretty=format:"%H")
