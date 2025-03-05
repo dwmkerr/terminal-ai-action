@@ -1,0 +1,24 @@
+name: Test PR - Commits Summary
+
+on:
+  push:
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Iterate through Commits
+        run: |
+          # Get the base ref, e.g. the target of the commit.
+          BASE_REF="${{ github.event.pull_request.base.ref }}"
+          git fetch origin $BASE_REF
+          
+          # Go through each commit in the PR.
+          for commit in $(git log --format=format:%H origin/$BASE_REF..HEAD); do
+            echo "Commit: $commit"
+            git log -1 --format=format:%s $commit
+            git diff $commit^ $commit
+          done
