@@ -12,14 +12,5 @@ jobs:
 
       - name: Iterate through Commits
         run: |
-          # Get the base ref, e.g. the target of the commit.
-          BASE_REF=${{ github.event.pull_request.base.ref }}
-          echo "Base Ref: ${BASE_REF}"
-          git fetch origin $BASE_REF
-          
-          # Go through each commit in the PR.
-          for commit in $(git log --format=format:%H origin/$BASE_REF..HEAD); do
-            echo "Commit: $commit"
-            git log -1 --format=format:%s $commit
-            git diff $commit^ $commit
-          done
+          # Show all of the commit logs and diffs.
+          ./scripts/iterate-pr-commits.sh ${{ github.event.pull_request.base.ref }}
