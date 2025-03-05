@@ -33,7 +33,12 @@ runs:
     - name: Install Scripts
       shell: bash
       run: |
-        ln -s $(pwd)/scripts/interate-pr-commits.sh /usr/local/bin/pr-commits
+        for script in $(pwd)/scripts/*.sh; do
+          name=${script/.sh}
+          echo "linking '${name}'..."
+          chmod +x $(pwd)/scripts/${script}
+          ln -s $(pwd)/scripts/${script} /usr/local/bin/${name}
+        done
 
     - name: Create Config File & Set API Key
       shell: bash
