@@ -1,0 +1,39 @@
+name: CI/CD
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+# Release Please needs permisisons to write commits and open PRs.
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  validate:
+    name: Validate
+    runs-on: ubuntu-24.04
+
+    steps: 
+      - name: Checkout
+        uses: actions/checkout@v4
+
+  release-please:
+    name: Release PR/Deploy
+    runs-on: ubuntu-24.04
+
+    # The 'release please' job will only run if successfully complete the
+    # 'validate-main' job. The deployment steps only occur if this is a release
+    # merge.
+    needs: validate
+
+    steps:
+      - name: Release Please
+        uses: google-github-actions/release-please-action@v4
+        id: release
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          release-type: node
+          package-name: terminal-ai
