@@ -14,7 +14,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: ai
-        uses: ./
+        uses: ../..
         with:
           openAiKey: "Key one"
           command: 'ai -- "hello"'
