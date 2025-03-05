@@ -1,5 +1,9 @@
 name: 'terminal-ai-action'
 description: 'use AI to operate on your code'
+author: dwmkerr
+branding:
+  icon: activity
+  color: blue
 inputs:
   openAiKey:
     description: 'OpenAI API Key'
@@ -7,8 +11,9 @@ inputs:
   command:
     description: 'The command to run, e.g: git diff --cached | ai -- "add tests as patch" >> tests.patch'
     required: true
+
 runs:
-  using: 'composite'
+  using: composite
   steps:
     - name: Setup Node
       uses: actions/setup-node@v4
