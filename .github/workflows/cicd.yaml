@@ -31,8 +31,7 @@ jobs:
 
     steps:
       - name: Release Please
-        uses: google-github-actions/release-please-action@v4
-        id: release
+        uses: googleapis/release-please-action@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           release-type: simple
