@@ -1,0 +1,25 @@
+name: Test - Invalid Params
+
+on:
+  push:
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Expect Fail - Invalid Parameters
+        uses: ./
+        with:
+          WRONGopenAiApiKey: apikey
+          WRONGcommand: ai "review this PR"
+        continue-on-error: true
+
+      - name: Expect Fail - Invalid API Key
+        uses: ./
+        with:
+          openAiApiKey: This is not vaild
+          command: ai "review this PR"
+        continue-on-error: true
