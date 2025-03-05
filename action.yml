@@ -27,8 +27,8 @@ runs:
 
     - name: create ~/.ai/config.yaml
       shell: bash
-      run:
-        echo "openaikey: {{ inputs.openaikey }} >> ~/.ai/config.yaml"
+      run: |
+        echo "openaikey: ${{ inputs.openaikey }} >> ~/.ai/config.yaml"
 
     - name: Debug Config
       shell: bash
