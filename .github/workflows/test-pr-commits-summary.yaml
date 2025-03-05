@@ -8,6 +8,12 @@ on:
 jobs:
   review:
     runs-on: ubuntu-latest
+    
+    # Essential! Don't forget to set permissions on the pull requests if you
+    # want to be able to comment on it.
+    permissions:
+      pull-requests: write
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -18,10 +24,6 @@ jobs:
 
       - name: Iterate through Commits
         uses: ./
-        # env:
-        #   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        #   GH_REPO: ${{ github.repository }}
-        #   PRNUM: ${{ github.event.pull_request.number }}
         with:
           openAiApiKey: ${{ secrets.OPENAI_API_KEY }}
           command: |
@@ -33,3 +35,7 @@ jobs:
 
             # Comment on the pull request.
             gh pr comment $PRNUM --body-file comment.md
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          PRNUM: ${{ github.event.pull_request.number }}
