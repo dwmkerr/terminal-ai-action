@@ -1,19 +1,26 @@
 # terminal-ai-action
 
-GitHub action to run AI commands as part of pipelines.
+GitHub action to run AI commands as part of pipelines. Review code, comment on pull requests, open pull requests to add tests and more.
 
 <!-- vim-markdown-toc GFM -->
 
-- [Example Usage](#example-usage)
-- [Documentation](#documentation)
-    - [Setting the API Key](#setting-the-api-key)
+    - [Quickstart](#quickstart)
+    - [Configuration](#configuration)
+        - [Setting the API Key](#setting-the-api-key)
+    - [Examples](#examples)
+    - [Helper Functions](#helper-functions)
 - [TODO](#todo)
 
 <!-- vim-markdown-toc -->
 
-## Example Usage
+## Quickstart
 
-Create a workflow, e.g. `.github/workflows/review.yaml`
+To use the `terminal-ai-action`:
+
+- Create a workflow, e.g. `.github/workflows/review.yaml`
+- Set an `openAiApiKey`, which will let you call the [`ai`](https://github.com/terminal-ai) CLI
+- Pass your prompts to `ai`, use optional [Helper Functions](#helper-functions) like `ai_pr_diff` to easily get diffs / logs / etc
+- Put results into comments, open pull requests and so on
 
 ```yaml
 name: Review PR
@@ -23,21 +30,25 @@ on:
 jobs:
   review:
     steps:
-      - name: Review with Terminal AI
-        uses: dwmkerr/terminal-ai-action@latest
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # get the full history.
+    
+      # Review the code. Examples in this repo show how to comment etc.
+      - uses: dwmkerr/terminal-ai-action@latest
         with:
           openAiApiKey: ${{ secrets.OPENAI_API_KEY }}
-          command: ai "review this PR"
+          command: ai "review this PR" < ai_pr_diff
 ```
+
+## Configuration
 
 The following configuration is supported:
 
 | Configuration | Description                   |
 |---------------|-------------------------------|
 | `openAiApiKey`   | **Required.** OpenAI API Key. |
-| `command`     | **Required.** An AI command. See [Examples](https://github.com/dwmkerr/terminal-ai?tab=readme-ov-file#examples)
-
-## Documentation
+| `command`     | **Required.** The command to run. See [Examples](https://github.com/dwmkerr/terminal-ai?tab=readme-ov-file#examples)
 
 ### Setting the API Key
 
@@ -58,7 +69,26 @@ jobs:
           command: ai "review this PR"
 ```
 
-## TODO
+## Examples
+
+- [Review the changes in a pull request, suggest improvements, suggest a title and description](./.gihub/workflows/example-pr-summary.yaml)
+
+## Helper Functions
+
+Some scripts are available to run as part of the `command` to conveniently work with the code. They are linked into the `bin` folder so can be called directly, e.g:
+
+```bash
+# Get the diff of the PR to its base:
+ai-pr-diff > ai "summarise this PR"
+```
+
+Available helpers:
+
+| Script                                  | Description                                                        |
+|-----------------------------------------|--------------------------------------------------------------------|
+| [`ai-pr-diff`](./scripts/ai-pr-diff.sh) | The result of `git diff` from a pull request to its target branch. |
+
+# TODO
 
 Quick and dirty task list:
 
