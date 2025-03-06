@@ -7,9 +7,9 @@ GitHub action to run AI commands as part of pipelines. Review code, comment on p
 <!-- vim-markdown-toc GFM -->
 
 - [Quickstart](#quickstart)
+- [Examples](#examples)
 - [Configuration](#configuration)
     - [Setting the API Key](#setting-the-api-key)
-- [Examples](#examples)
 - [Helper Functions](#helper-functions)
 - [TODO](#todo)
 
@@ -43,6 +43,12 @@ jobs:
           command: ai "review this PR" < ai_pr_diff
 ```
 
+## Examples
+
+[Review the changes in a pull request, suggest improvements, suggest a title and description](./.gihub/workflows/example-pr-summary.yaml)
+
+[![Screenshot of the PR summary example](./docs/screenshot-example-pr-summary.yaml.png)](./.gihub/workflows/example-pr-summary.yaml)
+
 ## Configuration
 
 The following configuration is supported:
@@ -71,12 +77,6 @@ jobs:
           command: ai "review this PR"
 ```
 
-## Examples
-
-[Review the changes in a pull request, suggest improvements, suggest a title and description](./.gihub/workflows/example-pr-summary.yaml)
-
-[![Screenshot of the PR summary example](./docs/screenshot-example-pr-summary.yaml.png)](./.gihub/workflows/example-pr-summary.yaml)
-
 ## Helper Functions
 
 Some scripts are available to run as part of the `command` to conveniently work with the code. They are linked into the `bin` folder so can be called directly, e.g:
@@ -97,3 +97,4 @@ Available helpers:
 Quick and dirty task list:
 
 - [ ] docs: nice example of [great README page](https://github.com/JamesIves/github-pages-deploy-action)
+- [ ] docs: show examples of how to comment etc
