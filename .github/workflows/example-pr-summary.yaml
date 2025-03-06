@@ -1,4 +1,4 @@
-name: Test PR - Commits Summary
+name: Example - PR Summary
 
 on:
   # This can *only* work on a pull request, as we need to know the
@@ -7,7 +7,7 @@ on:
 
 jobs:
   pr-summary:
-    name: "Example - PR Summary Comment"
+    name: "PR Summary"
     runs-on: ubuntu-latest
     
     # Essential! Don't forget to set permissions on the pull requests if you
