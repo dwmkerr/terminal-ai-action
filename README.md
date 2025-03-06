@@ -2,13 +2,15 @@
 
 GitHub action to run AI commands as part of pipelines. Review code, comment on pull requests, open pull requests to add tests and more.
 
+**Caution**: be mindful of costs given how many calls to APIs automated reviews can make, as well as how many tokens may be needed.
+
 <!-- vim-markdown-toc GFM -->
 
-    - [Quickstart](#quickstart)
-    - [Configuration](#configuration)
-        - [Setting the API Key](#setting-the-api-key)
-    - [Examples](#examples)
-    - [Helper Functions](#helper-functions)
+- [Quickstart](#quickstart)
+- [Configuration](#configuration)
+    - [Setting the API Key](#setting-the-api-key)
+- [Examples](#examples)
+- [Helper Functions](#helper-functions)
 - [TODO](#todo)
 
 <!-- vim-markdown-toc -->
@@ -71,7 +73,9 @@ jobs:
 
 ## Examples
 
-- [Review the changes in a pull request, suggest improvements, suggest a title and description](./.gihub/workflows/example-pr-summary.yaml)
+[Review the changes in a pull request, suggest improvements, suggest a title and description](./.gihub/workflows/example-pr-summary.yaml)
+
+[![Screenshot of the PR summary example](./docs/screenshot-example-pr-summary.yaml.png)](./.gihub/workflows/example-pr-summary.yaml)
 
 ## Helper Functions
 
@@ -88,7 +92,7 @@ Available helpers:
 |-----------------------------------------|--------------------------------------------------------------------|
 | [`ai-pr-diff`](./scripts/ai-pr-diff.sh) | The result of `git diff` from a pull request to its target branch. |
 
-# TODO
+## TODO
 
 Quick and dirty task list:
 
