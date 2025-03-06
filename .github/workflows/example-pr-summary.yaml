@@ -1,0 +1,43 @@
+name: Example - PR Summary
+
+on:
+  # This can *only* work on a pull request, as we need to know the
+  # pull request base (i.e. target branch) to compare to.
+  pull_request:
+
+jobs:
+  pr-summary:
+    name: "PR Summary"
+    runs-on: ubuntu-latest
+    
+    # Essential! Don't forget to set permissions on the pull requests if you
+    # want to be able to comment on it.
+    permissions:
+      pull-requests: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          # Essential you fetch all of the history so we can compare each commit
+          # to the base.
+          fetch-depth: 0
+
+      - name: Summarise PR
+        uses: ./
+        with:
+          openAiApiKey: ${{ secrets.OPENAI_API_KEY }}
+          command: |
+            # Get the PR diff.
+            ai-pr-diff "${{ github.event.pull_request.base.ref }}" "${GITHUB_SHA}" > diff.patch
+
+            # Request a summary, suggestions, title and diff in markdown.
+            ai 'You are a code reviewer reviewing a diff for a pull request in stdin. In markdown that is suitable for a github comment, write the following: <title>\n<summary of the changes in bullets>\n<suggestions to improve the code in bullets>\n<a "code" block with a short suggestion for a commit title for the PR using Conventional Commit format><a "code" block with a short summary of the PR suitable for a commit description>.' < diff.patch | tee -a comment.md
+
+            # Write the output as a comment.
+            gh pr comment $PRNUM --body-file comment.md
+
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          PRNUM: ${{ github.event.pull_request.number }}
