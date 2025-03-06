@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.4.0](https://github.com/dwmkerr/terminal-ai-action/compare/v0.3.1...v0.4.0) (2025-03-06)
+
+
+### Features
+
+* iterate pr commits ([#6](https://github.com/dwmkerr/terminal-ai-action/issues/6)) ([20295a8](https://github.com/dwmkerr/terminal-ai-action/commit/20295a85845c7094f04ded5c5f8f6e233d5817ad))
+* summarise PR in comment example ([#8](https://github.com/dwmkerr/terminal-ai-action/issues/8)) ([f9ededa](https://github.com/dwmkerr/terminal-ai-action/commit/f9ededaba874999bb5282d7eb5b27b5e8c6dcea1))
+
 ## [0.3.1](https://github.com/dwmkerr/terminal-ai-action/compare/v0.2.0...v0.3.1) (2025-03-05)
 
 
