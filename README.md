@@ -1,6 +1,6 @@
 # terminal-ai-action
 
-[![Buy me a coffee](https://img.shields.io/badge/thanks-buy%20me%20a%20coffee-ea4aaa?logo=githubsponsors&logoColor=white)](https://github.com/sponsors/dwmkerr?frequency=one-time)
+[![Donate](https://img.shields.io/badge/thanks-donate-ea4aaa?logo=githubsponsors&logoColor=white)](https://github.com/sponsors/dwmkerr/sponsorships?frequency=one-time&amount=5)
 
 GitHub action to run AI commands as part of pipelines. Review code, comment on pull requests, open pull requests to add tests and more.
 
