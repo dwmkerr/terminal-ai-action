@@ -1,5 +1,7 @@
 # terminal-ai-action
 
+[![Donate](https://img.shields.io/badge/thanks-donate-ea4aaa?logo=githubsponsors&logoColor=white)](https://github.com/sponsors/dwmkerr/sponsorships?frequency=one-time&amount=5)
+
 GitHub action to run AI commands as part of pipelines. Review code, comment on pull requests, open pull requests to add tests and more.
 
 **Caution**: be mindful of costs given how many calls to APIs automated reviews can make, as well as how many tokens may be needed.
